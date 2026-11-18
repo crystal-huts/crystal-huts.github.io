@@ -448,6 +448,9 @@ h1,h2,h3{font-weight:900;line-height:1.25}
 (function(){
   var WA='966538707391';
   function wa(msg){return 'https://wa.me/'+WA+'?text='+encodeURIComponent(msg);}
+  function track(name){try{if(window.goatcounter&&window.goatcounter.count)window.goatcounter.count({path:name,title:'ضغطة واتساب',event:true});}catch(e){}}
+  function slug(c){return c==='شاليه ١'?'chalet1':(c==='شاليه ٢'?'chalet2':'general');}
+  document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[href*="wa.me"]');if(a)track('whatsapp-button-'+slug(a.dataset.wa||''));});
   function ar(n){return String(n).replace(/\d/g,function(d){return '٠١٢٣٤٥٦٧٨٩'[d];});}
   document.querySelectorAll('[data-wa]').forEach(function(a){
     a.href=wa('السلام عليكم، أبغى أسأل عن السعر والتوفر في '+a.dataset.wa+' (أكواخ البلورة).');
@@ -480,7 +483,7 @@ h1,h2,h3{font-weight:900;line-height:1.25}
     }
     var n=document.getElementById('pp').value;
     if(n)lines.push('عدد الأشخاص: '+n);
-    var u=wa(lines.join('\n')),w=null;try{w=window.open(u,'_blank');}catch(e){}if(!w)window.location.href=u;
+    track('whatsapp-form-'+slug(c));var u=wa(lines.join('\n')),w=null;try{w=window.open(u,'_blank');}catch(e){}if(!w)window.location.href=u;
   });
 
   // story viewer
@@ -531,5 +534,6 @@ h1,h2,h3{font-weight:900;line-height:1.25}
   });
 })();
 </script>
+<script data-goatcounter="https://crystalhuts.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body>
 </html>
